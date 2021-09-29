@@ -1,0 +1,22 @@
+version: "3"
+services:
+  back:
+    build:
+      context: .
+      dockerfile: dockerfiles/back
+    # build: ./back
+    volumes:
+      - ./config/db.json:/rest-api/config/todos.json
+      - ./config/config.json:/rest-api/config/config.json
+  front-nginx:
+    build:
+      context: .
+      dockerfile: dockerfiles/front-nginx
+    restart: unless-stopped
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx-sites.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - "back"

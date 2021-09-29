@@ -1,0 +1,7 @@
+FROM node
+ADD back/. /rest-api
+COPY config/config.json /rest-api/config
+WORKDIR /rest-api
+RUN npm ci || npm i
+RUN npm run build
+ENTRYPOINT npm run start:prod

@@ -1,0 +1,8 @@
+FROM node AS frontend
+ADD front/. /front
+WORKDIR /front
+RUN npm ci || npm i
+RUN npm run build
+
+FROM nginx
+COPY --from=frontend /front/build /usr/share/nginx/html

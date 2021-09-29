@@ -1,0 +1,6 @@
+[submodule "front"]
+	path = front
+	url = https://github.com/tbertonatti/vidatec-front.git
+[submodule "back"]
+	path = back
+	url = https://github.com/tbertonatti/vidatec-back.git
